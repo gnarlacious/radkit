@@ -1,6 +1,7 @@
 ---
 title: Radkit
 source: ./docs
+destination: ./docs/_site
 collections:
   docs:
     title: Docs
