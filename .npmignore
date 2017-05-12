@@ -1,0 +1,6 @@
+docs
+_config.yml
+Gemfile
+Gemfile.lock
+_site
+.sass-cache

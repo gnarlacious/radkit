@@ -1,0 +1,22 @@
+.site-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.aside-menu {
+  width: 20%;
+  // margin-right: $gutter-width;
+}
+
+.main-container {
+  width: 60%;
+}
+
+@include alerts();
+@include buttons();
+@include control-group();
+@include forms();
+@include menu();
+@include modal();
+@include nav();
+@include tables();

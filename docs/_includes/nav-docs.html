@@ -1,0 +1,22 @@
+<nav class="menu">
+  <span class="title">Global</span>
+  {% for doc in site.docs %}
+    {% if doc.type == 'global' %}
+      <a class="item {% if doc.url == page.url %}-is-active{% endif %}" href="{{ doc.url }}">{{ doc.title }}</a>
+    {% endif %}
+  {% endfor %}
+
+  <span class="title">Components</span>
+  {% for doc in site.docs %}
+    {% if doc.type == 'components' %}
+      <a class="item {% if doc.url == page.url %}-is-active{% endif %}" href="{{ doc.url }}">{{ doc.title }}</a>
+    {% endif %}
+  {% endfor %}
+
+  <span class="title">Utilities</span>
+  {% for doc in site.docs %}
+    {% if doc.type == 'utils' %}
+      <a class="item {% if doc.url == page.url %}-is-active{% endif %}" href="{{ doc.url }}">{{ doc.title }}</a>
+    {% endif %}
+  {% endfor %}
+</nav>

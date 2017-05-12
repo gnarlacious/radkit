@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <main role="main">
+      {{content}}
+    </main>
+
+    <script src="{{ "/js/vendors/highlight.pack.js" | prepend: site.baseurl }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Component Scripts -->
+    <script src="{{ "/js/nav.js" | prepend: site.baseurl }}"></script>
+    <!-- Main script -->
+    <script src="{{ "/js/main.js" | prepend: site.baseurl }}"></script>
+  </body>
+</html>
