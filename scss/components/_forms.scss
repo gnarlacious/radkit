@@ -40,7 +40,7 @@
       display: block;
       position: relative;
       width: 100%;
-      margin: map-deep-get($options, input, margin)
+      margin: map-deep-get($options, input, margin);
       padding: map-deep-get($options, input, padding);
       background: map-deep-get($options, input, background);
       border: map-deep-get($options, input, border);
