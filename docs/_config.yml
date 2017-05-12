@@ -1,7 +1,5 @@
 ---
 title: Radkit
-source: ./docs
-destination: _gh_pages
 collections:
   docs:
     title: Docs
