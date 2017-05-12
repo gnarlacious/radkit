@@ -4,4 +4,4 @@ layout: default
 
 # Radkit
 
-[Read the Docs](/docs/all)
+[Read the Docs](/radkit/docs/all)
