@@ -1,0 +1,17 @@
+{
+  "name": "radkit",
+  "version": "0.0.1",
+  "description": "Sass frontend framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "keywords": [
+    "frontend",
+    "sass",
+    "scss",
+    "mixins"
+  ],
+  "author": "Dustin Delatore <dustin@delatore.me> (https://whosdustin.com)",
+  "license": "MIT"
+}

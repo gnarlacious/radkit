@@ -1,0 +1,135 @@
+@mixin modal($options:()) {
+  $options: map-merge((
+    name: 'modal',
+    animation: 'fade-and-drop',
+    radius: 0,
+    background: #fff
+  ), $options);
+
+  .#{map-get($options, name)} {
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    width: 94%;
+    padding: 1em;
+    @include prefix(transition, 2ms opacity ease, webkit mox ms o);
+    @include prefix(transform, translate(-50%, -50%), webkit mox ms o);
+    border-radius: #{map-get($options, radius)};
+    background: #{map-get($options, background)};
+
+    > .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0.2em 0.5em 0.3em;
+      border: 0;
+      outline: none;
+      background: $brand-color-neutral;
+      color: $font-color-base;
+      font-size: calc(#{$font-size-base} * 1.3);
+      cursor: pointer;
+    }
+
+    &.-is-anchored {
+      top: 20px;
+      @include prefix(transform, translate(-50%, 0), webkit mox ms o);
+      > .content {
+        overflow-y: scroll;
+        min-height: 10px;
+      }
+    }
+
+    &.-is-open {
+      opacity: 1;
+    }
+
+    // Animations
+
+    @if unquote("#{map-get($options, animation)} == fade-and-drop") {
+      &._#{map-get($options, animation)} {
+        display: block;
+        top: -300%;
+        opacity: 1;
+        @include prefix(transition, 500ms top 500ms ease, webkit moz mos o);
+        &.-is-open {
+          top: 50%;
+          @include prefix(transition, 500ms top 500ms ease, webkit moz mos o);
+        }
+      }
+    }
+  }
+
+  .modal-content {
+    @extend ._sr-only;
+  }
+
+  .overlay {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    @include prefix(transition, 1ms opacity ease, webkit moz ms o);
+    background: rgba(0,0,0,0.6);
+
+    &.-is-open {
+      opacity: 1;
+    }
+  }
+}
+
+.scotch-modal.fade-and-drop.scotch-open
+{
+    top: 50%;
+
+    -webkit-transition: 500ms top 500ms ease;
+       -moz-transition: 500ms top 500ms ease;
+        -ms-transition: 500ms top 500ms ease;
+         -o-transition: 500ms top 500ms ease;
+            transition: 500ms top 500ms ease;
+}
+
+.scotch-modal.fade-and-drop.scotch-open.scotch-anchored
+{
+
+    -webkit-transition: 500ms top 500ms ease;
+       -moz-transition: 500ms top 500ms ease;
+        -ms-transition: 500ms top 500ms ease;
+         -o-transition: 500ms top 500ms ease;
+            transition: 500ms top 500ms ease;
+}
+
+.scotch-overlay.fade-and-drop.scotch-open
+{
+    top: 0;
+
+    -webkit-transition: 500ms opacity ease;
+       -moz-transition: 500ms opacity ease;
+        -ms-transition: 500ms opacity ease;
+         -o-transition: 500ms opacity ease;
+            transition: 500ms opacity ease;
+
+    opacity: 1;
+}
+
+.scotch-modal.fade-and-drop
+{
+    -webkit-transition: 500ms top ease;
+       -moz-transition: 500ms top ease;
+        -ms-transition: 500ms top ease;
+         -o-transition: 500ms top ease;
+            transition: 500ms top ease;
+}
+
+.scotch-overlay.fade-and-drop
+{
+    -webkit-transition: 500ms opacity 500ms ease;
+       -moz-transition: 500ms opacity 500ms ease;
+        -ms-transition: 500ms opacity 500ms ease;
+         -o-transition: 500ms opacity 500ms ease;
+            transition: 500ms opacity 500ms ease;
+}
