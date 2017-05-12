@@ -1,6 +1,6 @@
 {
   "name": "radkit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sass frontend framework",
   "main": "index.js",
   "scripts": {
