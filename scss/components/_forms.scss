@@ -33,13 +33,14 @@
       color: map-deep-get($options, label, color);
     }
 
-    // .form__input
+    // Inputs
     > .input {
       @include box-sizing;
       @include placeholder;
       display: block;
       position: relative;
       width: 100%;
+      margin: map-deep-get($options, input, margin)
       padding: map-deep-get($options, input, padding);
       background: map-deep-get($options, input, background);
       border: map-deep-get($options, input, border);
@@ -85,13 +86,6 @@
         align-content: space-between;
         align-self: flex-start;
         flex-shrink: 1;
-        // display: inline-block;
-        // position: relative;
-        // vertical-align: middle;
-        // padding-left: 20px;
-        // font-family: map-get($options, font);
-        // font-weight: 400;
-        // cursor: pointer;
       }
     }
 
