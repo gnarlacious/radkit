@@ -1,0 +1,81 @@
+@mixin nav($options: ()) {
+  $options: map-merge((
+    name: 'nav',
+    background: #fff,
+    animation: 'drop-down',
+    item: (
+      padding: 0.5em 1.2em
+    )
+  ), $options);
+
+  .#{map-get($options, name)}-header {
+    position: absolute;
+    background: #{map-get($options, background)};
+    > .item {
+      display: block;
+      padding: #{map-deep-get($options, item, padding)};
+      color: $brand-color-primary;
+    }
+
+    // Open animation types
+    @if unquote('#{map-get($options, animation)} == "drop-down"') {
+      top: -9999px;
+      width: 100%;
+      @include prefix(transition, all 0.4s, webkit mos o);
+      &._drop-down {
+        transform: translateY(500px);
+      }
+    }
+  }
+
+  .#{map-get($options, name)}-trigger {
+    position: absolute;
+    display: block;
+    right: 10px;
+    top: 14px;
+    padding-top: 18px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: $brand-color-primary;
+    outline: none;
+    z-index: 2;
+    > .burger,
+    &::before,
+    &::after {
+      border-radius: 1px;
+      position: absolute;
+      display: block;
+      left: 50%;
+      height: 2px;
+      width: 30px;
+      content: '';
+      background: $brand-color-primary;
+      margin-left: -15px;
+      transition: all 0.2s ease;
+    }
+    // All for the burger menu
+    > .burger { top: 8px; opacity: 1;}
+    &::before { top: 0; }
+    &::after { top: 16px; }
+
+    &.-is-open {
+      > .burger {
+        opacity: 0;
+      }
+      &::before,
+      &::after {
+        top: 8px;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+}

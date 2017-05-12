@@ -1,0 +1,37 @@
+@mixin states($options:()) {
+  $options: map-merge((
+    border: false,
+    background: false,
+    color: false,
+    placeholder: false,
+    icon: false,
+    outline: false
+  ), $options);
+
+  @each $state in $states {
+    $state: nth($state, 1);
+    $border: nth(map-get($states, #{$state}), 1);
+    $background: nth(map-get($states, #{$state}), 2);
+    $color: nth(map-get($states, #{$state}), 3);
+    // $icon: nth(map-get($states, #{$state}), 4);
+    &.-has-#{$state} {
+      @if map-get($options, border) == true {
+        border-color: $border;
+      }
+      @if map-get($options, background) == true {
+        background-color: $background;
+      }
+      @if map-get($options, color) == true {
+        color: $color;
+      }
+      @if map-get($options, placeholder) == true {
+        @include placeholder($color);
+      }
+      @if map-get($options, outline) == true {
+        &:focus {
+          outline-color: $border;
+        }
+      }
+    }
+  }
+}

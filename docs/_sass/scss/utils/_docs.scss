@@ -1,0 +1,13 @@
+.site-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside-menu {
+  width: 30%;
+  margin-right: $gutter-width;
+}
+
+.main-container {
+  width: 70%;
+}

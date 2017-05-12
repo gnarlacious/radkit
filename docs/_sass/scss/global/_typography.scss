@@ -1,0 +1,31 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-heading;
+}
+
+.lead {
+  font-family: $font-family-lead;
+  font-weight: $font-weight-lead;
+}
+
+p {
+  font-family: $font-family-base;
+  font-weight: $font-weight-base;
+}
+
+pre {
+  font-size: $font-size-base/1.125;
+  line-height: $line-height-base/1.125;
+}
+
+blockquote {
+  font-family: $font-family-blockquote;
+  font-size: $font-size-blockquote;
+  font-style: italic;
+}

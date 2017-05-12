@@ -1,0 +1,148 @@
+@mixin forms($options: ()) {
+  $options: map-merge((
+    name: 'form',
+    font: $font-family-form,
+    label: (
+      weight: $font-weight-action,
+      size: $font-size-base,
+      color: $form-label-color
+    ),
+    input: (
+      margin: 10px 0,
+      padding: 10px 0 10px 10px,
+      border: solid 1px $input-border,
+      radius: 0,
+      background: $input-bkg,
+      color: $input-color
+    ),
+    help-text-color: #aaa
+  ), $options);
+
+  // Form
+  .#{map-get($options, name)} {
+    display: flex;
+    flex-flow: column nowrap;
+    &.-inline {
+      flex-flow: row;
+    }
+    > .label {
+      margin-bottom: 0;
+      font-family: map-get($options, font);
+      font-size: map-deep-get($options, label, size);
+      font-weight: map-deep-get($options, label, weight);
+      color: map-deep-get($options, label, color);
+    }
+
+    // .form__input
+    > .input {
+      @include box-sizing;
+      @include placeholder;
+      display: block;
+      position: relative;
+      width: 100%;
+      padding: map-deep-get($options, input, padding);
+      background: map-deep-get($options, input, background);
+      border: map-deep-get($options, input, border);
+      border-radius: map-deep-get($options, input, radius);
+      font-family: map-get($options, font);
+      font-size: $font-size-base;
+      color: map-deep-get($options, input, color);
+      &[disabled],
+      &-is-disabled,
+      &[readonly],
+      fieldset[disabled] & {
+        @include opacity(0.5);
+        background: $input-bkg-disabled;
+        cursor: not-allowed;
+      }
+      // Feedback states
+      @include states((
+        outline: true,
+        placeholder: true,
+        border: true
+      ));
+    }
+
+    // Radio & Checkboxes // ------------------------------------
+
+    > .radio,
+    > .check {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-right: 0.5em;
+      margin-bottom: 0.5em;
+      padding-left: 1em;
+      font-family: map-get($options, font);
+      font-weight: map-deep-get($options, label, weight);
+      cursor: pointer;
+
+      > .action {
+        margin: 0 0.5em 0.2em 0;
+      }
+
+      &.-inline {
+        align-content: space-between;
+        align-self: flex-start;
+        flex-shrink: 1;
+        // display: inline-block;
+        // position: relative;
+        // vertical-align: middle;
+        // padding-left: 20px;
+        // font-family: map-get($options, font);
+        // font-weight: 400;
+        // cursor: pointer;
+      }
+    }
+
+    // Select Box // ------------------------------------
+    > .select {
+      display: inline-block;
+      max-width: 100%;
+      padding: 10px 24px 10px 10px;
+      vertical-align: middle;
+      border: map-deep-get($options, input, border);
+      border-radius: 0;
+      background: $input-bkg url($select-image) no-repeat right 8px center;
+      background-size: 8px 10px;
+      font-family: map-get($options, font);
+      font-size: $font-size-base;
+      // Have to include vendor prefixes as the `appearance` property isn't part of the CSS spec.
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      // IE9 hacks to hide the background-image and reduce padding
+      padding-right: 8px \9;
+      background-image: none \9;
+
+      // Hides the default caret in IE11
+      &::-ms-expand {
+        opacity: 0;
+      }
+      // Select validation styles
+      @include states((
+        border: true,
+        outline: true
+      ));
+      // Hide validation icon for select boxes
+      + .help-text:after {
+        display: none;
+      }
+    }
+
+    // Help Text // ------------------------------------
+    > .help-text {
+      color: map-get($options, help-text-color);
+      display: block;
+      position: relative;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      font-family: map-get($options, font);
+      @include states((
+        color: true,
+        icon: true
+      ));
+    }
+  }
+}

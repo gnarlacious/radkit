@@ -37,7 +37,7 @@ jspm_packages
 .node_repl_history
 
 # Jekyll
-_site
+_gh_pages
 .sass-cache
 .jekyll-metadata
 .DS_Store

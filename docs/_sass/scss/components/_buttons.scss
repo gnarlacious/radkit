@@ -1,0 +1,77 @@
+
+
+@mixin buttons($options: ()) {
+  // Extend default options
+  $options: map-merge((
+    name: 'button',
+    padding: 0.5em 1em,
+    radius: 0,
+    font-family: $font-family-action,
+    font-weight: 400,
+    type: 'default' 'primary' 'secondary' 'tertiary'
+  ), $options);
+
+  // Dumping CSS
+  .#{map-get($options, name)} {
+    width: auto;
+    padding: map-get($options, padding);
+    border: 1px solid transparent;
+    border-radius: map-get($options, radius);
+    background-image: none;
+    font-size: $font-size-base;
+    font-family: map-get($options, font-family);
+    font-weight: map-get($options, font-weight);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    // Style all button types
+    @each $type in map-get($options, type) {
+      //.-default .-primary
+      &.-#{$type} {
+        border-color: nth(map-get($button-colors, #{$type}), 1);
+        background-color: nth(map-get($button-colors, #{$type}), 2);
+        color: nth(map-get($button-colors, #{$type}), 3);
+        &:hover {
+          border-color: darken(nth(map-get($button-colors, #{$type}), 1), 5);
+          background-color: darken(nth(map-get($button-colors, #{$type}), 2), 5);
+          color: nth(map-get($button-colors, #{$type}), 3);
+        }
+        &:visited {
+          color: nth(map-get($button-colors, #{$type}), 3);
+        }
+      }
+    }
+
+    &[disabled],
+    &.-is-disabled {
+      @include opacity(0.5);
+      pointer-events: none;
+    }
+
+    // Full width button
+    &.-full {
+      width: 100%;
+    }
+
+  }
+  // Button Toggle
+  // REVISIT WHEN JS COMPONENTS ARE IMPLEMENTED
+  // ------------------------------------
+  // .#{map-get($options, name)}__toggle {
+  //   display: inline-block;
+  //   width: auto;
+  //   padding: 0.2rem;
+  //   margin: 0.8rem 0;
+  //   border: solid 1px $button-default-border;
+  //   border-radius: 4px;
+  //   background: $white;
+  //   .#{map-get($options, name)} {
+  //     margin: 0;
+  //   }
+  //   > .#{map-get($options, name)}--is-inactive {
+  //     border-color: transparent;
+  //     background: transparent;
+  //   }
+  // }
+}

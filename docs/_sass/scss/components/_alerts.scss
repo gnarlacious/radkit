@@ -1,0 +1,26 @@
+@mixin alerts($options:()) {
+  $options: map-merge((
+    name: 'alert',
+    padding: 0.5rem 1rem,
+    margin: $gutter-width 0,
+    border: true,
+    border-width: 1px,
+    radius: 0,
+    background: true,
+    color: true
+  ), $options);
+
+  .#{map-get($options, name)} {
+    padding: map-get($options, padding);
+    margin: map-get($options, margin);
+    border: solid map-get($options, border-width) transparent;
+    border-radius: map-get($options, radius);
+    font-size: $font-size-base;
+    @include states((
+      border: map-get($options, border),
+      background: map-get($options, background),
+      color: map-get($options, color)
+    ));
+  }
+
+}
