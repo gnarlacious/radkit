@@ -19,7 +19,8 @@
     @include states((
       border: map-get($options, border),
       background: map-get($options, background),
-      color: map-get($options, color)
+      color: map-get($options, color),
+      button: map-get($options, button)
     ));
   }
 

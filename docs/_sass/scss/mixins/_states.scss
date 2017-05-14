@@ -4,7 +4,7 @@
     background: false,
     color: false,
     placeholder: false,
-    icon: false,
+    button: false,
     outline: false
   ), $options);
 
@@ -30,6 +30,11 @@
       @if map-get($options, outline) == true {
         &:focus {
           outline-color: $border;
+        }
+      }
+      @if map-get($options, button) == true {
+        > .button {
+          color: $color;
         }
       }
     }
